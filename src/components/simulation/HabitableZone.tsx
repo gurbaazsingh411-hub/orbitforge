@@ -1,4 +1,5 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef } from 'react';
+import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useSimulationStore } from '@/stores/simulationStore';
 import { habitableZone } from '@/data/planetData';
@@ -14,16 +15,28 @@ export const HabitableZone: React.FC<HabitableZoneProps> = ({
     opacity = 0.15,
 }) => {
     const { showHabitableZone } = useSimulationStore();
+    const groupRef = useRef<THREE.Group>(null);
 
     // Convert AU boundaries to simulation scale
     const innerRadius = habitableZone.innerBoundaryAU * AU_TO_SIMULATION;
     const outerRadius = habitableZone.outerBoundaryAU * AU_TO_SIMULATION;
     const optimalRadius = habitableZone.optimalAU * AU_TO_SIMULATION;
 
+    useFrame((state, delta) => {
+        if (groupRef.current) {
+            // Slow rotation
+            groupRef.current.rotation.z += delta * 0.05;
+
+            // Gentle pulsing effect
+            const pulse = Math.sin(state.clock.elapsedTime * 0.5) * 0.05 + 1;
+            groupRef.current.scale.set(pulse, pulse, 1);
+        }
+    });
+
     if (!showHabitableZone) return null;
 
     return (
-        <group rotation={[-Math.PI / 2, 0, 0]}>
+        <group ref={groupRef} rotation={[-Math.PI / 2, 0, 0]}>
             {/* Main habitable zone ring (green) */}
             <mesh>
                 <ringGeometry args={[innerRadius, outerRadius, 128]} />

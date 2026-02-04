@@ -15,12 +15,16 @@ export const Header: React.FC = () => {
       {/* Logo */}
       <div className="flex items-center gap-3">
         <div className="relative">
-          <Globe2 className="h-8 w-8 text-primary animate-spin-slow" />
+          <img
+            src="/logo.png"
+            alt="Stellar Sandbox Logo"
+            className="h-10 w-10 object-contain animate-spin-slow"
+          />
           <div className="absolute inset-0 blur-lg bg-primary/30" />
         </div>
         <div>
           <h1 className="text-xl font-bold text-gradient-cosmic tracking-tight">
-            OrbitForge
+            Stellar Sandbox
           </h1>
           <p className="text-xs text-muted-foreground">
             Planetary Physics Simulator
