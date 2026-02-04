@@ -10,6 +10,7 @@ import { HabitableZoneToggle } from '@/components/ui/HabitableZoneToggle';
 import { PlanetInfoCard } from '@/components/ui/PlanetInfoCard';
 import { ScienceControlPanel } from '@/components/ui/ScienceControlPanel';
 import { LoadingScreen } from '@/components/ui/LoadingScreen';
+import { EducationalGuide } from '@/components/ui/EducationalGuide';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);

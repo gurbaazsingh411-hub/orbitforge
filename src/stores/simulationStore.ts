@@ -61,6 +61,10 @@ interface SimulationState {
   showAtmospheres: boolean;
   useRealScale: boolean;
 
+  // Educational Guide
+  isGuideActive: boolean;
+  currentGuideStep: number;
+
 
   // Actions
   addBody: (body: Omit<CelestialBody, 'id' | 'lifeLevel' | 'biodiversity' | 'vegetationCover'>) => string;
@@ -88,6 +92,10 @@ interface SimulationState {
   destroyBody: (id: string) => void;
   removeExplosion: (id: string) => void;
   setBodyDragging: (id: string, isDragging: boolean) => void;
+
+  // Guide Actions
+  toggleGuide: (active: boolean) => void;
+  setGuideStep: (step: number) => void;
 }
 
 
@@ -403,6 +411,8 @@ export const useSimulationStore = create<SimulationState>((set, get) => ({
   showTidalForces: false,
   showAtmospheres: false,
   useRealScale: false,
+  isGuideActive: false,
+  currentGuideStep: 0,
 
 
   addBody: (bodyData) => {
@@ -502,6 +512,14 @@ export const useSimulationStore = create<SimulationState>((set, get) => ({
         b.id === id ? { ...b, isBeingDragged: isDragging } : b
       ),
     }));
+  },
+
+  toggleGuide: (active) => {
+    set({ isGuideActive: active });
+  },
+
+  setGuideStep: (step) => {
+    set({ currentGuideStep: step });
   },
 
   destroyBody: (id) => {
