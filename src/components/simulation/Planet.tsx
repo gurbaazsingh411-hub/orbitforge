@@ -13,7 +13,7 @@ interface PlanetProps {
 export const Planet: React.FC<PlanetProps> = ({ body }) => {
   const meshRef = useRef<THREE.Mesh>(null);
   const glowRef = useRef<THREE.Mesh>(null);
-  const { selectedBodyId, setSelectedBody, updateBody, isPaused, setBodyDragging } = useSimulationStore();
+  const { selectedBodyId, setSelectedBody, updateBody, isPaused, setBodyDragging, useRealScale } = useSimulationStore();
   const { camera, raycaster } = useThree();
 
   const [isDragging, setIsDragging] = useState(false);
@@ -133,6 +133,7 @@ export const Planet: React.FC<PlanetProps> = ({ body }) => {
         onPointerUp={handlePointerUp}
         onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerUp}
+        scale={useRealScale ? 0.05 : 1}
       >
         <sphereGeometry args={[body.radius, isAsteroid ? 12 : 32, isAsteroid ? 12 : 32]} />
         <primitive object={proceduralMaterial} attach="material" />
@@ -143,6 +144,7 @@ export const Planet: React.FC<PlanetProps> = ({ body }) => {
         <Sphere
           ref={glowRef}
           args={[body.radius * 1.2, 32, 32]}
+          scale={useRealScale ? 0.05 : 1}
         >
           <meshBasicMaterial
             color={planetColor}

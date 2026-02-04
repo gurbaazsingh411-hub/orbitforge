@@ -57,7 +57,10 @@ interface SimulationState {
   showAlignments: boolean;
   showBarycenter: boolean;
   showLagrange: boolean;
+  showTidalForces: boolean;
+  showAtmospheres: boolean;
   useRealScale: boolean;
+
 
   // Actions
   addBody: (body: Omit<CelestialBody, 'id' | 'lifeLevel' | 'biodiversity' | 'vegetationCover'>) => string;
@@ -78,6 +81,8 @@ interface SimulationState {
   toggleAlignments: () => void;
   toggleBarycenter: () => void;
   toggleLagrange: () => void;
+  toggleTidalForces: () => void;
+  toggleAtmospheres: () => void;
   toggleRealScale: () => void;
   updatePhysics: (deltaTime: number) => void;
   destroyBody: (id: string) => void;
@@ -395,7 +400,10 @@ export const useSimulationStore = create<SimulationState>((set, get) => ({
   showAlignments: false,
   showBarycenter: false,
   showLagrange: false,
+  showTidalForces: false,
+  showAtmospheres: false,
   useRealScale: false,
+
 
   addBody: (bodyData) => {
     const id = generateId();
@@ -477,6 +485,12 @@ export const useSimulationStore = create<SimulationState>((set, get) => ({
   },
   toggleLagrange: () => {
     set((state) => ({ showLagrange: !state.showLagrange }));
+  },
+  toggleTidalForces: () => {
+    set((state) => ({ showTidalForces: !state.showTidalForces }));
+  },
+  toggleAtmospheres: () => {
+    set((state) => ({ showAtmospheres: !state.showAtmospheres }));
   },
   toggleRealScale: () => {
     set((state) => ({ useRealScale: !state.useRealScale }));

@@ -9,7 +9,9 @@ import {
     Target,
     Zap,
     Ruler,
-    Orbit
+    Orbit,
+    Wind,
+    Maximize2
 } from 'lucide-react';
 
 export const ScienceControlPanel: React.FC = () => {
@@ -25,6 +27,9 @@ export const ScienceControlPanel: React.FC = () => {
         showAlignments, toggleAlignments,
         showBarycenter, toggleBarycenter,
         showLagrange, toggleLagrange,
+        showTidalForces, toggleTidalForces,
+        showAtmospheres, toggleAtmospheres,
+        useRealScale, toggleRealScale,
     } = useSimulationStore();
 
     // Close panel when clicking outside
@@ -49,6 +54,9 @@ export const ScienceControlPanel: React.FC = () => {
         { enabled: showAlignments, toggle: toggleAlignments, label: 'Alignments', icon: Compass, desc: 'Planet alignments' },
         { enabled: showBarycenter, toggle: toggleBarycenter, label: 'Barycenter', icon: Target, desc: 'Center of mass' },
         { enabled: showLagrange, toggle: toggleLagrange, label: 'Lagrange', icon: Orbit, desc: 'L1-L5 points' },
+        { enabled: showTidalForces, toggle: toggleTidalForces, label: 'Tidal Forces', icon: Compass, desc: 'Gravitational stretch' },
+        { enabled: showAtmospheres, toggle: toggleAtmospheres, label: 'Atmosphere', icon: Wind, desc: 'Composition chart' },
+        { enabled: useRealScale, toggle: toggleRealScale, label: 'True Scale', icon: Maximize2, desc: 'Real size ratios (Tiny!)' },
     ];
 
     const activeCount = toggles.filter(t => t.enabled).length;
@@ -60,8 +68,8 @@ export const ScienceControlPanel: React.FC = () => {
                 size="sm"
                 onClick={() => setIsOpen(!isOpen)}
                 className={`gap-2 transition-all ${activeCount > 0
-                        ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                        : 'bg-background/80 hover:bg-background border-muted'
+                    ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                    : 'bg-background/80 hover:bg-background border-muted'
                     }`}
                 title="Science Visualizations"
             >
@@ -84,8 +92,8 @@ export const ScienceControlPanel: React.FC = () => {
                                 key={idx}
                                 onClick={toggle.toggle}
                                 className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-all ${toggle.enabled
-                                        ? 'bg-blue-600/30 border border-blue-500/50'
-                                        : 'bg-white/5 hover:bg-white/10 border border-transparent'
+                                    ? 'bg-blue-600/30 border border-blue-500/50'
+                                    : 'bg-white/5 hover:bg-white/10 border border-transparent'
                                     }`}
                             >
                                 <toggle.icon className={`w-4 h-4 ${toggle.enabled ? 'text-blue-400' : 'text-gray-400'}`} />

@@ -9,7 +9,7 @@ import { GalaxyBackground, EnhancedStarField } from './GalaxyBackground';
 import { GravityField } from './GravityField';
 import { HabitableZone } from './HabitableZone';
 import { LightSpeedAnimation, DistanceLabels, InverseSquareLaw } from './PhysicsVisuals';
-import { DayNightTerminator, EclipseSimulator, PlanetaryAlignment, Barycenter, LagrangePoints } from './CelestialEvents';
+import { DayNightTerminator, EclipseSimulator, PlanetaryAlignment, Barycenter, LagrangePoints, TidalForces, AtmosphereOverlay } from './CelestialEvents';
 import { ExplosionEffect, ShockwaveRing } from './ExplosionEffect';
 import { useSimulationStore, getTemperatureColor } from '@/stores/simulationStore';
 
@@ -163,6 +163,8 @@ const SimulationScene: React.FC = () => {
       <PlanetaryAlignment />
       <Barycenter />
       <LagrangePoints />
+      <TidalForces />
+      <AtmosphereOverlay />
 
       {/* Explosions */}
       {explosions.map((explosion) => (
