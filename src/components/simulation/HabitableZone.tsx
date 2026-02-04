@@ -24,12 +24,19 @@ export const HabitableZone: React.FC<HabitableZoneProps> = ({
 
     useFrame((state, delta) => {
         if (groupRef.current) {
-            // Slow rotation
+            // Slow rotation for visual effect
             groupRef.current.rotation.z += delta * 0.05;
 
             // Gentle pulsing effect
             const pulse = Math.sin(state.clock.elapsedTime * 0.5) * 0.05 + 1;
             groupRef.current.scale.set(pulse, pulse, 1);
+
+            // Follow the Sun
+            const bodies = useSimulationStore.getState().bodies;
+            const sun = bodies.find(b => b.bodyType === 'star');
+            if (sun) {
+                groupRef.current.position.set(sun.position[0], sun.position[1], sun.position[2]);
+            }
         }
     });
 
