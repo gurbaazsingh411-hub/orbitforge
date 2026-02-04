@@ -155,240 +155,304 @@ const generateAsteroids = (): CelestialBody[] => {
   return asteroids;
 };
 
-// Default solar system setup
-const createDefaultBodies = (): CelestialBody[] => [
-  // Sun
-  {
-    id: 'sun',
-    name: 'Sun',
-    position: [0, 0, 0],
-    velocity: [0, 0, 0],
-    mass: 1000,
-    radius: 2,
-    temperature: 1,
-    waterLevel: 0,
-    color: '#fbbf24',
-    trailPositions: [],
-    lifeLevel: 0,
-    biodiversity: 0,
-    vegetationCover: 0,
-    bodyType: 'star',
-    textureType: 'volcanic',
-  },
-  // Mercury
-  {
-    id: 'mercury',
-    name: 'Mercury',
-    position: [8, 0, 0],
-    velocity: [0, 0, 7.5],
-    mass: 1,
-    radius: 0.3,
-    temperature: 0.9,
-    waterLevel: 0,
-    color: '#a1a1aa',
-    trailPositions: [],
-    lifeLevel: 0,
-    biodiversity: 0,
-    vegetationCover: 0,
-    bodyType: 'planet',
-    textureType: 'barren',
-  },
-  // Venus
-  {
-    id: 'venus',
-    name: 'Venus',
-    position: [12, 0, 0],
-    velocity: [0, 0, 6.2],
-    mass: 2,
-    radius: 0.5,
-    temperature: 0.85,
-    waterLevel: 0,
-    color: '#fcd34d',
-    trailPositions: [],
-    lifeLevel: 0,
-    biodiversity: 0,
-    vegetationCover: 0,
-    bodyType: 'planet',
-    textureType: 'volcanic',
-  },
-  // Earth
-  {
-    id: 'earth',
-    name: 'Earth',
-    position: [16, 0, 0],
-    velocity: [0, 0, 5.5],
-    mass: 3,
-    radius: 0.5,
-    temperature: 0.5,
-    waterLevel: 0.7,
-    color: '#3b82f6',
-    trailPositions: [],
-    lifeLevel: 0.85,
-    biodiversity: 0.9,
-    vegetationCover: 0.6,
-    bodyType: 'planet',
-    textureType: 'ocean',
-  },
-  // Moon (Earth's satellite)
-  {
-    id: 'moon',
-    name: 'Moon',
-    position: [17.5, 0, 0],
-    velocity: [0, 0, 6.5],
-    mass: 0.1,
-    radius: 0.15,
-    temperature: 0.25,
-    waterLevel: 0,
-    color: '#d1d5db',
-    trailPositions: [],
-    lifeLevel: 0,
-    biodiversity: 0,
-    vegetationCover: 0,
-    bodyType: 'moon',
-    textureType: 'barren',
-    parentId: 'earth',
-  },
-  // Mars
-  {
-    id: 'mars',
-    name: 'Mars',
-    position: [22, 0, 0],
-    velocity: [0, 0, 4.7],
-    mass: 1.5,
-    radius: 0.4,
-    temperature: 0.35,
-    waterLevel: 0.05,
-    color: '#ef4444',
-    trailPositions: [],
-    lifeLevel: 0.05,
-    biodiversity: 0.02,
-    vegetationCover: 0,
-    bodyType: 'planet',
-    textureType: 'rocky',
-  },
-  // Jupiter (Gas Giant with faint rings)
-  {
-    id: 'jupiter',
-    name: 'Jupiter',
-    position: [38, 0, 0],
-    velocity: [0, 0, 3.6],
-    mass: 50,
-    radius: 1.2,
-    temperature: 0.4,
-    waterLevel: 0,
-    color: '#d97706',
-    trailPositions: [],
-    lifeLevel: 0,
-    biodiversity: 0,
-    vegetationCover: 0,
-    bodyType: 'planet',
-    textureType: 'gas',
-    hasRings: true,
-    ringColor: '#a87850',
-    ringTilt: 0.05,
-  },
-  // Saturn (Gas Giant with prominent rings)
-  {
-    id: 'saturn',
-    name: 'Saturn',
-    position: [52, 0, 0],
-    velocity: [0, 0, 3.1],
-    mass: 30,
-    radius: 1.0,
-    temperature: 0.3,
-    waterLevel: 0,
-    color: '#fbbf24',
-    trailPositions: [],
-    lifeLevel: 0,
-    biodiversity: 0,
-    vegetationCover: 0,
-    bodyType: 'planet',
-    textureType: 'gas',
-    hasRings: true,
-    ringColor: '#c9a86c',
-    ringTilt: 0.47,
-  },
-  // Uranus (Ice Giant with rings)
-  {
-    id: 'uranus',
-    name: 'Uranus',
-    position: [68, 0, 0],
-    velocity: [0, 0, 2.7],
-    mass: 15,
-    radius: 0.7,
-    temperature: 0.15,
-    waterLevel: 0,
-    color: '#67e8f9',
-    trailPositions: [],
-    lifeLevel: 0,
-    biodiversity: 0,
-    vegetationCover: 0,
-    bodyType: 'planet',
-    textureType: 'ice',
-    hasRings: true,
-    ringColor: '#94a3b8',
-    ringTilt: 1.71, // Uranus has extreme tilt
-  },
-  // Neptune (Ice Giant)
-  {
-    id: 'neptune',
-    name: 'Neptune',
-    position: [82, 0, 0],
-    velocity: [0, 0, 2.4],
-    mass: 17,
-    radius: 0.65,
-    temperature: 0.1,
-    waterLevel: 0,
-    color: '#3b82f6',
-    trailPositions: [],
-    lifeLevel: 0,
-    biodiversity: 0,
-    vegetationCover: 0,
-    bodyType: 'planet',
-    textureType: 'ice',
-    hasRings: true,
-    ringColor: '#60a5fa',
-    ringTilt: 0.49,
-  },
-  // Comet Halley (elliptical orbit)
-  {
-    id: 'comet-halley',
-    name: "Halley's Comet",
-    position: [90, 5, 20],
-    velocity: [-1.8, -0.3, -2.5],
-    mass: 0.001,
-    radius: 0.15,
-    temperature: 0.05,
-    waterLevel: 0.8,
-    color: '#e0f2fe',
-    trailPositions: [],
-    lifeLevel: 0,
-    biodiversity: 0,
-    vegetationCover: 0,
-    bodyType: 'comet',
-    textureType: 'ice',
-  },
-  // Second comet
-  {
-    id: 'comet-swift',
-    name: 'Swift-Tuttle',
-    position: [-70, -8, 60],
-    velocity: [2.0, 0.4, -1.5],
-    mass: 0.002,
-    radius: 0.12,
-    temperature: 0.05,
-    waterLevel: 0.9,
-    color: '#bfdbfe',
-    trailPositions: [],
-    lifeLevel: 0,
-    biodiversity: 0,
-    vegetationCover: 0,
-    bodyType: 'comet',
-    textureType: 'ice',
-  },
-  // Spread asteroids
-  ...generateAsteroids(),
-];
+// Default solar system setup with randomized positions
+const createDefaultBodies = (): CelestialBody[] => {
+  const bodies: CelestialBody[] = [
+    // Sun
+    {
+      id: 'sun',
+      name: 'Sun',
+      position: [0, 0, 0],
+      velocity: [0, 0, 0],
+      mass: 1000,
+      radius: 2,
+      temperature: 1,
+      waterLevel: 0,
+      color: '#fbbf24',
+      trailPositions: [],
+      lifeLevel: 0,
+      biodiversity: 0,
+      vegetationCover: 0,
+      bodyType: 'star',
+      textureType: 'volcanic',
+    },
+    // Mercury
+    {
+      id: 'mercury',
+      name: 'Mercury',
+      position: [8, 0, 0],
+      velocity: [0, 0, 7.5],
+      mass: 1,
+      radius: 0.3,
+      temperature: 0.9,
+      waterLevel: 0,
+      color: '#a1a1aa',
+      trailPositions: [],
+      lifeLevel: 0,
+      biodiversity: 0,
+      vegetationCover: 0,
+      bodyType: 'planet',
+      textureType: 'barren',
+    },
+    // Venus
+    {
+      id: 'venus',
+      name: 'Venus',
+      position: [12, 0, 0],
+      velocity: [0, 0, 6.2],
+      mass: 2,
+      radius: 0.5,
+      temperature: 0.85,
+      waterLevel: 0,
+      color: '#fcd34d',
+      trailPositions: [],
+      lifeLevel: 0,
+      biodiversity: 0,
+      vegetationCover: 0,
+      bodyType: 'planet',
+      textureType: 'volcanic',
+    },
+    // Earth
+    {
+      id: 'earth',
+      name: 'Earth',
+      position: [16, 0, 0],
+      velocity: [0, 0, 5.5],
+      mass: 3,
+      radius: 0.5,
+      temperature: 0.5,
+      waterLevel: 0.7,
+      color: '#3b82f6',
+      trailPositions: [],
+      lifeLevel: 0.85,
+      biodiversity: 0.9,
+      vegetationCover: 0.6,
+      bodyType: 'planet',
+      textureType: 'ocean',
+    },
+    // Moon (Earth's satellite)
+    {
+      id: 'moon',
+      name: 'Moon',
+      position: [17.5, 0, 0],
+      velocity: [0, 0, 6.5],
+      mass: 0.1,
+      radius: 0.15,
+      temperature: 0.25,
+      waterLevel: 0,
+      color: '#d1d5db',
+      trailPositions: [],
+      lifeLevel: 0,
+      biodiversity: 0,
+      vegetationCover: 0,
+      bodyType: 'moon',
+      textureType: 'barren',
+      parentId: 'earth',
+    },
+    // Mars
+    {
+      id: 'mars',
+      name: 'Mars',
+      position: [22, 0, 0],
+      velocity: [0, 0, 4.7],
+      mass: 1.5,
+      radius: 0.4,
+      temperature: 0.35,
+      waterLevel: 0.05,
+      color: '#ef4444',
+      trailPositions: [],
+      lifeLevel: 0.05,
+      biodiversity: 0.02,
+      vegetationCover: 0,
+      bodyType: 'planet',
+      textureType: 'rocky',
+    },
+    // Jupiter (Gas Giant with faint rings)
+    {
+      id: 'jupiter',
+      name: 'Jupiter',
+      position: [38, 0, 0],
+      velocity: [0, 0, 3.6],
+      mass: 50,
+      radius: 1.2,
+      temperature: 0.4,
+      waterLevel: 0,
+      color: '#d97706',
+      trailPositions: [],
+      lifeLevel: 0,
+      biodiversity: 0,
+      vegetationCover: 0,
+      bodyType: 'planet',
+      textureType: 'gas',
+      hasRings: true,
+      ringColor: '#a87850',
+      ringTilt: 0.05,
+    },
+    // Saturn (Gas Giant with prominent rings)
+    {
+      id: 'saturn',
+      name: 'Saturn',
+      position: [52, 0, 0],
+      velocity: [0, 0, 3.1],
+      mass: 30,
+      radius: 1.0,
+      temperature: 0.3,
+      waterLevel: 0,
+      color: '#fbbf24',
+      trailPositions: [],
+      lifeLevel: 0,
+      biodiversity: 0,
+      vegetationCover: 0,
+      bodyType: 'planet',
+      textureType: 'gas',
+      hasRings: true,
+      ringColor: '#c9a86c',
+      ringTilt: 0.47,
+    },
+    // Uranus (Ice Giant with rings)
+    {
+      id: 'uranus',
+      name: 'Uranus',
+      position: [68, 0, 0],
+      velocity: [0, 0, 2.7],
+      mass: 15,
+      radius: 0.7,
+      temperature: 0.15,
+      waterLevel: 0,
+      color: '#67e8f9',
+      trailPositions: [],
+      lifeLevel: 0,
+      biodiversity: 0,
+      vegetationCover: 0,
+      bodyType: 'planet',
+      textureType: 'ice',
+      hasRings: true,
+      ringColor: '#94a3b8',
+      ringTilt: 1.71, // Uranus has extreme tilt
+    },
+    // Neptune (Ice Giant)
+    {
+      id: 'neptune',
+      name: 'Neptune',
+      position: [82, 0, 0],
+      velocity: [0, 0, 2.4],
+      mass: 17,
+      radius: 0.65,
+      temperature: 0.1,
+      waterLevel: 0,
+      color: '#3b82f6',
+      trailPositions: [],
+      lifeLevel: 0,
+      biodiversity: 0,
+      vegetationCover: 0,
+      bodyType: 'planet',
+      textureType: 'ice',
+      hasRings: true,
+      ringColor: '#60a5fa',
+      ringTilt: 0.49,
+    },
+    // Comet Halley (elliptical orbit)
+    {
+      id: 'comet-halley',
+      name: "Halley's Comet",
+      position: [90, 5, 20],
+      velocity: [-1.8, -0.3, -2.5],
+      mass: 0.001,
+      radius: 0.15,
+      temperature: 0.05,
+      waterLevel: 0.8,
+      color: '#e0f2fe',
+      trailPositions: [],
+      lifeLevel: 0,
+      biodiversity: 0,
+      vegetationCover: 0,
+      bodyType: 'comet',
+      textureType: 'ice',
+    },
+    // Second comet
+    {
+      id: 'comet-swift',
+      name: 'Swift-Tuttle',
+      position: [-70, -8, 60],
+      velocity: [2.0, 0.4, -1.5],
+      mass: 0.002,
+      radius: 0.12,
+      temperature: 0.05,
+      waterLevel: 0.9,
+      color: '#bfdbfe',
+      trailPositions: [],
+      lifeLevel: 0,
+      biodiversity: 0,
+      vegetationCover: 0,
+      bodyType: 'comet',
+      textureType: 'ice',
+    },
+    // Spread asteroids
+    ...generateAsteroids(),
+  ];
+
+  // Randomize planet positions
+  // We group bodies by system (Planet + its moons) to keep them together
+  const systems = new Map<string, CelestialBody[]>();
+  const independentBodies: CelestialBody[] = [];
+
+  // Group bodies
+  bodies.forEach(body => {
+    if (body.id === 'sun') {
+      independentBodies.push(body);
+    } else if (body.parentId) {
+      // It's a moon, store it to process with parent
+      // We'll handle it in the second pass
+    } else {
+      // It's a planet or independent body
+      systems.set(body.id, [body]);
+    }
+  });
+
+  // Add moons to their systems
+  bodies.forEach(body => {
+    if (body.parentId) {
+      const system = systems.get(body.parentId);
+      if (system) {
+        system.push(body);
+      } else {
+        independentBodies.push(body);
+      }
+    }
+  });
+
+  // Apply random rotation to each system (except Sun)
+  const randomizedBodies = [...independentBodies];
+
+  systems.forEach((systemBodies) => {
+    // Generate random angle
+    const theta = Math.random() * Math.PI * 2;
+    const cos = Math.cos(theta);
+    const sin = Math.sin(theta);
+
+    systemBodies.forEach(body => {
+      // Rotate Position (x, z)
+      const x = body.position[0];
+      const z = body.position[2];
+      const newX = x * cos - z * sin;
+      const newZ = x * sin + z * cos;
+
+      // Rotate Velocity (vx, vz)
+      const vx = body.velocity[0];
+      const vz = body.velocity[2];
+      const newVx = vx * cos - vz * sin;
+      const newVz = vx * sin + vz * cos;
+
+      randomizedBodies.push({
+        ...body,
+        position: [newX, body.position[1], newZ],
+        velocity: [newVx, body.velocity[1], newVz]
+      });
+    });
+  });
+
+  return randomizedBodies;
+};
 
 export const useSimulationStore = create<SimulationState>((set, get) => ({
   bodies: createDefaultBodies(),
