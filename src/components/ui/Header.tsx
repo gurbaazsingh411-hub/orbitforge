@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
         </div>
         <div>
           <h1 className="text-xl font-bold text-gradient-cosmic tracking-tight">
-            Stellar Sandbox
+            DevX Orbitary
           </h1>
           <p className="text-xs text-muted-foreground">
             Planetary Physics Simulator

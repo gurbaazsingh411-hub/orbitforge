@@ -1,4 +1,4 @@
-# Stellar Sandbox
+# DevX Orbitary
 
 An interactive 3D solar system simulator built with React Three Fiber.
 
