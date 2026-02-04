@@ -71,12 +71,12 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl font-bold text-white mb-2 tracking-wider">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
-                    Stellar Sandbox
-                </span>
+            <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-pulse tracking-tight mb-4">
+                DevX Orbitary
             </h1>
-            <p className="text-gray-400 text-sm mb-8">Solar System Simulator</p>
+            <p className="text-blue-200/80 text-lg tracking-wider font-light">
+                Initializing Physics Engine...
+            </p>
 
             {/* Progress Bar */}
             <div className="w-64 h-1.5 bg-white/10 rounded-full overflow-hidden">
